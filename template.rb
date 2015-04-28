@@ -30,7 +30,7 @@ git_commit "Initial commit of empty Rails engine."
 GEMSPEC_FILE = File.join(destination_root, "#{name}.gemspec")
 GITIGNORE_FILE = File.join(destination_root, ".gitignore")
 RECIPE_PATH = File.join(File.dirname(rails_template), "recipes")
-RECIPES = %w{dummy_app rspec guard developer_gems}
+RECIPES = %w{gitignore dummy_app rspec guard developer_gems}
 
 RECIPES.each do |recipe|
   apply File.join(RECIPE_PATH, "#{recipe}.rb")
