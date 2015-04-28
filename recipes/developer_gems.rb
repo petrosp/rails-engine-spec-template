@@ -12,6 +12,9 @@ inject_into_file GEMSPEC_FILE, before: %r{^end$} do
 }
 end
 
+gsub_file GEMSPEC_FILE, 's.homepage    = "TODO"','s.homepage    = "http://localhost:3000"', :green
+gsub_file GEMSPEC_FILE, 'TODO: ','',:green
+
 bundle
 
 git_commit "Adding development gems"
