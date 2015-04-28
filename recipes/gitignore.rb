@@ -6,9 +6,7 @@ append_to_file '.gitignore' do
 .rbenv-gemsets
 .rvmrc
 .ruby-gemset
-.ruby-version"
+.ruby-version\n"
 end
-
-bundle
 
 git_commit "Do not pollute the repo"
