@@ -1,3 +1,4 @@
+#! /usr/bin/env ruby
 error = false
 
 unless try(:name) && File.exist?(File.join(destination_root, 'lib', name, 'engine.rb'))
@@ -20,17 +21,20 @@ def git_commit(message)
 end
 
 def bundle
-  run "bundle install"
+  run "bundle install --path vendor/bundle"
 end
 
 say "Creating git repository..."
 git :init
+apply File.join(RECIPE_PATH, "gitignore.rb")
 git_commit "Initial commit of empty Rails engine."
+
+run "echo '#{name} -global' >> .rbenv-gemsets"
 
 GEMSPEC_FILE = File.join(destination_root, "#{name}.gemspec")
 GITIGNORE_FILE = File.join(destination_root, ".gitignore")
 RECIPE_PATH = File.join(File.dirname(rails_template), "recipes")
-RECIPES = %w{gitignore dummy_app rspec guard developer_gems}
+RECIPES = %w{dummy_app rspec guard developer_gems}
 
 RECIPES.each do |recipe|
   apply File.join(RECIPE_PATH, "#{recipe}.rb")
@@ -41,6 +45,7 @@ git gc: '--quiet'
 
 say %{
   Things to do:
-    - edit #{name}.gemspec to set correct info and remove bundler warnings.
     - rake db:migrate
+  Things done:
+    - edited #{name}.gemspec and set correct info (TODO et al) to remove bundler warnings.
 }
