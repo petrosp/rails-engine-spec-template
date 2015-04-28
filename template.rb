@@ -20,7 +20,7 @@ def git_commit(message)
 end
 
 def bundle
-  run "bundle install --quiet"
+  run "bundle install"
 end
 
 say "Creating git repository..."
