@@ -1,7 +1,7 @@
 say "Installing rspec, capybara, factory_girl, ffaker..."
 
 # Add test files
-inject_into_file GEMSPEC_FILE, after: /s\.files.*$/ do 
+inject_into_file GEMSPEC_FILE, after: /s\.files.*$/ do
   %{\n  s.test_files = Dir["spec/**/*"]}
 end
 
@@ -20,7 +20,7 @@ bundle
 generate 'rspec:install'
 
 # Setting default Rake task to :spec
-append_to_file 'Rakefile' do 
+append_to_file 'Rakefile' do
 %{
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
@@ -32,7 +32,7 @@ task :default => :spec
 end
 
 # Setting rspec and factory_girl as default generators...
-insert_into_file "lib/#{name}/engine.rb", after: /isolate_namespace .*$/ do
+insert_into_file "lib/#{name}/engine.rb", after: /(isolate_namespace .*$ | class Engine .*$)/ do
 %{
 
     config.generators do |g|
@@ -53,10 +53,10 @@ gsub_file 'spec/spec_helper.rb', '../../config/environment', '../dummy/config/en
 gsub_file 'spec/spec_helper.rb', 'Rails.root.join("spec/support/**/*.rb")', '"#{File.dirname(__FILE__)}/support/**/*.rb"'
 
 # Require factory girl
-insert_into_file 'spec/spec_helper.rb', "\nrequire 'factory_girl_rails'", after: "require 'rspec/autorun'" 
+insert_into_file 'spec/spec_helper.rb', "\nrequire 'factory_girl_rails'", after: "require 'rspec/autorun'"
 
 # Add Factory Girl methods to RSpec, and include the route's url_helpers.
-insert_into_file 'spec/spec_helper.rb', before: /^end$/ do 
+insert_into_file 'spec/spec_helper.rb', before: /^end$/ do
 %{
   config.include FactoryGirl::Syntax::Methods
   config.include #{camelized}::Engine.routes.url_helpers
