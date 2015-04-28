@@ -1,4 +1,4 @@
-say "Installing thin, pry, awesome_print, better_errors, and hirb..."
+say "Installing puma, pry, awesome_print, better_errors, and hirb..."
 
 inject_into_file GEMSPEC_FILE, before: %r{^end$} do
   %{
@@ -12,13 +12,9 @@ inject_into_file GEMSPEC_FILE, before: %r{^end$} do
 }
 end
 
-gsub_file GEMSPEC_FILE, 's.homepage    = "TODO"',:green do
-  's.homepage    = "http://localhost:3000"'
-end
+gsub_file GEMSPEC_FILE, 's.homepage    = "TODO"', 's.homepage    = "http://localhost:3000"'
 
-gsub_file GEMSPEC_FILE, 'TODO: ', :green do
-  ''
-end
+gsub_file GEMSPEC_FILE, 'TODO: ', ''
 
 bundle
 
