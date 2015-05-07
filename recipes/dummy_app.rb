@@ -14,7 +14,7 @@ else
 spec/dummy/db/*.sqlite3-journal
 spec/dummy/log/*.log
 spec/dummy/tmp/
-spec/dummy/.sass-cache"
+spec/dummy/.sass-cache\n"
   end
 
   git_commit "Set up dummy app in spec folder."
