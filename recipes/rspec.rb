@@ -53,7 +53,9 @@ gsub_file 'spec/rails_helper.rb', '../../config/environment', '../dummy/config/e
 gsub_file 'spec/rails_helper.rb', 'Rails.root.join("spec/support/**/*.rb")', '"#{File.dirname(__FILE__)}/support/**/*.rb"'
 
 # Require factory girl
-insert_into_file 'spec/rails_helper.rb', "\nrequire 'factory_girl_rails'", after: "require 'rspec/autorun'"
+insert_into_file 'spec/rails_helper.rb', "\nrequire 'factory_girl_rails'", after: /require \'rspec\/rails\'/
+gsub_file 'spec/rails_helper.rb', /require \'spec_helper\'/, ""
+insert_into_file 'spec/rails_helper.rb', "\nrequire 'spec_helper'", after: /require \'factory_girl_rails\'/
 
 # Add Factory Girl methods to RSpec, and include the route's url_helpers.
 insert_into_file 'spec/spec_helper.rb', before: /^end$/ do
