@@ -35,7 +35,7 @@ git :init
 apply File.join(RECIPE_PATH, "gitignore.rb")
 git_commit "Initial commit of empty Rails engine."
 
-run "echo '#{name} -global' >> .rbenv-gemsets"
+# run "echo '#{name} -global' >> .rbenv-gemsets"
 run "rbenv local 2.2.1"
 
 RECIPES.each do |recipe|

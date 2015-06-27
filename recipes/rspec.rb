@@ -47,13 +47,13 @@ end
 # Setting up spec helper for engines...
 
 # RSpec doesn't understand engine dummy path, fix that.
-gsub_file 'spec/spec_helper.rb', '../../config/environment', '../dummy/config/environment.rb'
+gsub_file 'spec/rails_helper.rb', '../../config/environment', '../dummy/config/environment.rb'
 
 # Rspec defaults to Rails.root but that's spec/dummy...
-gsub_file 'spec/spec_helper.rb', 'Rails.root.join("spec/support/**/*.rb")', '"#{File.dirname(__FILE__)}/support/**/*.rb"'
+gsub_file 'spec/rails_helper.rb', 'Rails.root.join("spec/support/**/*.rb")', '"#{File.dirname(__FILE__)}/support/**/*.rb"'
 
 # Require factory girl
-insert_into_file 'spec/spec_helper.rb', "\nrequire 'factory_girl_rails'", after: "require 'rspec/autorun'"
+insert_into_file 'spec/rails_helper.rb', "\nrequire 'factory_girl_rails'", after: "require 'rspec/autorun'"
 
 # Add Factory Girl methods to RSpec, and include the route's url_helpers.
 insert_into_file 'spec/spec_helper.rb', before: /^end$/ do
