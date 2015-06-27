@@ -24,9 +24,9 @@ ENGINE_PATH = File.expand_path("lib/#{name}/engine", ENGINE_ROOT)
   }
 end
 # run 'bundle exec guard init'
-run 'touch Guardfile'
-append_to_file 'Guardfile' do
-'guard :bundler do
+
+create_file 'Guardfile' do <<-RUBY
+guard :bundler do
   watch("Gemfile")
   watch(/^.+\.gemspec/)
 end
@@ -80,8 +80,8 @@ end
 # and you'll only need to keep track of one set of directives
 
 guard :zeus, cmd: "zeus rspec", &watch_directives
-'
-
+-RUBY
 end
+
 
 git_commit "Installed guard"
