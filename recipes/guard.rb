@@ -26,8 +26,7 @@ end
 # run 'bundle exec guard init'
 run 'touch Guardfile'
 append_to_file 'Guardfile' do
-%{
-guard :bundler do
+'guard :bundler do
   watch("Gemfile")
   watch(/^.+\.gemspec/)
 end
@@ -81,8 +80,8 @@ end
 # and you'll only need to keep track of one set of directives
 
 guard :zeus, cmd: "zeus rspec", &watch_directives
+'
 
-}
 end
 
 git_commit "Installed guard"
