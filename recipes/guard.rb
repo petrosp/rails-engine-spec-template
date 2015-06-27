@@ -12,7 +12,7 @@ bundle
 
 run 'bundle exec zeus init'
 
-inject_into_file 'custom_plan.rb', before: %r{ require 'zeus/rails' } do
+inject_into_file 'custom_plan.rb', before: /require \'zeus\/rails\'/ do
   %{
 ROOT_PATH = File.expand_path(Dir.pwd)
 ENVIRONMENT_PATH  = File.expand_path("spec/dummy/config/environment",  ROOT_PATH)
