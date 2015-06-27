@@ -20,8 +20,8 @@ ENV_PATH  = File.expand_path("spec/dummy/config/environment",  ROOT_PATH)
 BOOT_PATH = File.expand_path("spec/dummy/config/boot",  ROOT_PATH)
 APP_PATH  = File.expand_path("spec/dummy/config/application",  ROOT_PATH)
 ENGINE_ROOT = File.expand_path(Dir.pwd)
-ENGINE_PATH = File.expand_path("lib/#{name}/engine", ENGINE_ROOT)
-  }
+ENGINE_PATH = File.expand_path("lib/#{name}/engine", ENGINE_ROOT)\n
+}
 end
 # run 'bundle exec guard init'
 
