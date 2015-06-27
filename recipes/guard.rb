@@ -25,7 +25,8 @@ ENGINE_PATH = File.expand_path("lib/#{name}/engine", ENGINE_ROOT)
 end
 # run 'bundle exec guard init'
 
-create_file 'Guardfile' do <<-RUBY
+create_file 'Guardfile' do
+<<-'RUBY'
 guard :bundler do
   watch("Gemfile")
   watch(/^.+\.gemspec/)
@@ -80,7 +81,8 @@ end
 # and you'll only need to keep track of one set of directives
 
 guard :zeus, cmd: "zeus rspec", &watch_directives
--RUBY
+
+RUBY
 end
 
 
